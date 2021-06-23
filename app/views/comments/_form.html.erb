@@ -1,13 +1,20 @@
-<%= form_with model [@article, @article.comments.build] do |comment| %>
+<%= form_with model: [@article, @article.comments.build] do |comment| %>
     <p>
-        <%= form.label :commenter %>
-        <%= form.text_field :commenter%>
+        <%= comment.label :commenter %>
+        <%= comment.text_field :commenter%>
     </p>
+
     <p>
-        <%= form.label :body %>
-        <%= form.text_area :body %>
+        <%= comment.label :body %>
+        <%= comment.text_area :body %>
     </p>
+
     <p>
-        <%= form.submit %>
+        <%= comment.label :status %><br>
+        <%= comment.select :status, ['public','private','archived'], selected: 'public' %>
+    </p>
+
+    <p>
+        <%= comment.submit %>
     </p>
 <% end %>
