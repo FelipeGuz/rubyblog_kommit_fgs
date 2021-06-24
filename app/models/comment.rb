@@ -4,4 +4,6 @@
 class Comment < ApplicationRecord
   include Visible
   belongs_to :article
+
+  validates :score, inclusion: { in: (1..5).to_a }
 end
