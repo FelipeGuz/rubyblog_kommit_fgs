@@ -1,7 +1,11 @@
-class ArticlesController < ApplicationController
+# frozen_string_literal: true
 
+# Class to deal with the articles entity
+class ArticlesController < ApplicationController
   # Security authentication
-  http_basic_authenticate_with name: 'dhh', password: 'secret', except: [:index, :show]
+  http_basic_authenticate_with name: 'dhh',
+                               password: 'secret',
+                               except: %i[index show]
 
   def index
     @articles = Article.all
@@ -14,17 +18,17 @@ class ArticlesController < ApplicationController
   end
 
   # CREATE
-  def new 
+  def new
     @article = Article.new
   end
 
-  def create 
+  def create
     @article = Article.new(article_params)
 
-    if @article.save 
+    if @article.save
       redirect_to @article
     else
-      render :new 
+      render :new
     end
   end
 
@@ -53,8 +57,9 @@ class ArticlesController < ApplicationController
   end
 
   private
+
   def article_params
     puts "This are my parameters: #{params}"
-    params.require(:article).permit(:title,:body,:status)
+    params.require(:article).permit(:title, :body, :status)
   end
 end
