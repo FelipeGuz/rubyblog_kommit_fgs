@@ -1,6 +1,10 @@
 class Article < ApplicationRecord
-    has_many :comments
+    include Visible
+    
+    # Relations
+    has_many :comments, dependent: :destroy
 
+    # Condition verification
     validates :title, presence: true
     validates :body, presence: true, length: {minimum: 10}
 end
