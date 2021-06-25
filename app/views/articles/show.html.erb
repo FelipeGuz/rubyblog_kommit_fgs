@@ -1,17 +1,58 @@
-<h1><%= @article.title %></h1>
-<h3>Puntaje: <%= @article.comments.reduce(0) {|p,a| p+a.score}/@article.comments.size.to_f%></h3>
 
-<p><%= @article.body %></p>
+<%# Title and score %>
+<header>
+    <div class="p-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-2 fw-normal"><%= @article.title %></h1>
+    </div>
+    <div class="container">
+        <div class="pb-md-4 text-right">
+            <h3>score: <%= (@article.comments.reduce(0) {|p,a| p+a.score}/@article.comments.size.to_f).round(2)%></h3>
+        </div>
+    </div>
+</header>
 
-<ul>
-    <li><%= link_to "Edit", edit_article_path(@article) %></li>
-    <li><%= link_to "Destroy", article_path(@article), method: :delete, data: {confirm: "Are you sure?"} %></li>
-</ul>
 
-<%# Comments %>
-<h2>Comments</h2>
-<%= render @article.comments %>
+<%# Articles %>
+<div class="container px-4">
+    <% @article.body.split("\n").each do |paragraph|%>
+        <p class="text-justify" style="font-size:20px"><%= paragraph%></p>
+    <% end %>
+</div>
+
+
+<%# Edit and destroy buttons %>
+
+<div class="container">
+    <div class="d-grid d-sm-flex justify-content-sm-end">
+        <button class="btn btn-secondary btn-lg pr-5 m-3" type="button">
+            <%= link_to "Edit", edit_article_path(@article), class: "text-white" %>    
+        </button>
+        <button class="btn btn-secondary btn-lg pr-5 m-3" type="button">
+            <%= link_to "Destroy", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "text-white" %>    
+        </button>
+    </div>
+</div>
+
+
+<%# What do you think? message %>
+<div class="container px-4">
+    <div class="p-4 pb-md-4 mx-auto text-center">
+        <h2 class="display-4 fw-normal">What do you think?</h2>
+    </div>
+</div>
 
 <%# Add Comments %>
-<h2>Add a comment</h2>
 <%= render 'comments/form' %>
+
+<%# What people think? message %>
+<div class="container px-4 pt-5">
+    <div class="p-4 pb-md-4 mx-auto text-center">
+        <h2 class="display-4 fw-normal">What people think?</h2>
+    </div>
+</div>
+
+<%# Comments %>
+<%= render @article.comments %>
+
+<footer style="height: 50px"></footer>
+
