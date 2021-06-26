@@ -20,12 +20,17 @@
     <div class="container">
         <div class="row">
             <div class='col-6 d-grid d-sm-flex justify-content-sm-center'>
-                <%= form.label :status %><br>
-                <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+                <p class="text-center">
+                    <%= form.label :status %>
+                    <%= form.select :status, 
+                                    ['public', 'private', 'archived'], 
+                                    {},
+                                    {selected: 'public', class: 'form-control'} %>
+                </p>
             </div>
 
-            <div class='col-6 d-grid d-sm-flex justify-content-sm-center'>
-                <%= form.submit %>
+            <div class='col-6 d-grid d-sm-flex justify-content-sm-center py-3'>
+                <%= form.submit :Submit, class: "btn btn-outline-secondary btn-lg" %>
             </div>
         </div>
     </div>
