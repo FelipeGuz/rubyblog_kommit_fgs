@@ -15,6 +15,11 @@
     </p>
 
     <p>
+        <%= form.label :score %><br>
+        <%= form.select :score, (1..5).to_a, selected: 0 %>
+    </p>
+
+    <p>
         <%= form.submit %>
     </p>
 <% end %>
