@@ -1,12 +1,15 @@
-<p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-</p>
-<p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-</p>
 
-<p>
-    <%= link_to 'Destroy Comment', [comment.article, comment],method: :delete,data: {confirm: 'Are you sure?'} %>
-</p>
+<div class="cotnainer mt-4 mx-5 border-top">
+    <div class="text-center mt-3 mx-5">
+        <p style="font-size:20px">
+            <%= comment.commenter %> <strong>says...</strong> <%= comment.body %>
+        </p>
+    </div>
+    <div class="d-grid d-sm-flex justify-content-sm-end pr-3 pb-3">
+        <%= link_to 'Destroy Comment', 
+            [comment.article, comment], 
+            method: :delete,data: {confirm: 'Are you sure?'} %>
+    </div>
+</div>
+
+
