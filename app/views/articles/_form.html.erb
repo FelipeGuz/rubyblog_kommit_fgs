@@ -19,14 +19,25 @@
 
     <div class="container">
         <div class="row">
-            <div class='col-6 d-grid d-sm-flex justify-content-sm-center'>
-                <p class="text-center">
-                    <%= form.label :status %>
-                    <%= form.select :status, 
-                                    ['public', 'private', 'archived'], 
-                                    {},
-                                    {selected: 'public', class: 'form-control'} %>
+            <div class='col-6 d-grid justify-content-sm-center m-auto'>
+                <p class="text-center d-flex justify-content-sm-center" style="font-size:20px">
+                    Comment status
                 </p>
+                <div class="container d-flex justify-content-center">
+                    <div class="btn-group d-table justify-content-sm-center" role="group">
+                        <label class="btn btn-outline-primary" for="status1"> Public
+                            <%= form.radio_button :status, 'public', id: "status1",class: "btn-check", autocomplete: "off",checked: true%>
+                        </label>
+
+                        <label class="btn btn-outline-primary" for="status2"> Private
+                            <%= form.radio_button :status, 'private', id: "status2"%>
+                        </label>
+
+                        <label class="btn btn-outline-primary" for="status3"> Archived
+                            <%= form.radio_button :status, 'archived', id: "status3"%>
+                        </label>  
+                    </div>
+                </div>
             </div>
 
             <div class='col-6 d-grid d-sm-flex justify-content-sm-center py-3'>
