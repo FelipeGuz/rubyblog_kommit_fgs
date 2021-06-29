@@ -54,7 +54,7 @@
 </div>
 
 <%# Comments %>
-<%= render @article.comments %>
+<%= render @article.comments[0...-1] %>
 
 <footer style="height: 50px"></footer>
 
