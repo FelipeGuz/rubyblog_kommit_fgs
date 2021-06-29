@@ -6,4 +6,8 @@ class Comment < ApplicationRecord
   belongs_to :article
 
   validates :score, inclusion: { in: (1..5).to_a }
+
+  # Condition verification
+  validates :commenter, presence: true
+  validates :body, presence: true
 end
