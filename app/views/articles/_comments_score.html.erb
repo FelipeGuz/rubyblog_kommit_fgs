@@ -1,0 +1,17 @@
+<div class="container d-inline">
+    <div class="row">
+        <div class="col-6 d-table">
+            <img src="/images/comment.svg" style="max-width:40%; min-width:20px">
+            <span class="text-white position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                <%= article.comments.length%>
+            </span>
+        </div>
+
+        <div class="col-6 d-table">
+            <img src="/images/like.svg" style="max-width:40%; min-width:20px">
+            <span class="text-white position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                <%= article.comments.reduce(0) {|p,a| p+a.score}/article.comments.size.to_f%>
+            </span>
+        </div>
+    </div>
+</div>

@@ -12,23 +12,54 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container border-bottom">
         <div class="row">
-            <div class='col-4 d-grid d-sm-flex justify-content-sm-center'>
-                <p>
-                    <%= form.label :status %><br>
-                    <%= form.select :status, ['public','private','archived'], selected: 'public' %>
+            <%# Status %>
+            <div class='col-4 justify-content-sm-center m-auto'>
+                <p class="text-center d-flex justify-content-sm-center" style="font-size:20px">
+                    Comment status
                 </p>
+                <div class="container d-flex justify-content-center">
+                    <div class="btn-group d-table justify-content-sm-center" role="group">
+                        <label class="btn btn-outline-primary" for="status1"> Public
+                            <%= form.radio_button :status, 'public', id: "status1",class: "btn-check", autocomplete: "off",checked: true%>
+                        </label>
+
+                        <label class="btn btn-outline-primary" for="status2"> Private
+                            <%= form.radio_button :status, 'private', id: "status2"%>
+                        </label>
+
+                        <label class="btn btn-outline-primary" for="status3"> Archived
+                            <%= form.radio_button :status, 'archived', id: "status3"%>
+                        </label>  
+                    </div>
+                </div>
             </div>
-            <div class='col-4 d-grid d-sm-flex justify-content-sm-center'>
-                <p>
-                    <%= form.label :score %><br>
-                    <%= form.select :score, (1..5).to_a, selected: 0 %>
+            <%# Score %>
+            <div class='col-4 d-grid justify-content-sm-center m-auto'>
+                <p class="text-center d-flex justify-content-sm-center" style="font-size:20px">
+                    How much do you like the article?
                 </p>
+                <div class="container d-flex justify-content-center">
+                    <div class="btn-group d-table" role="group">
+                        <% (1..5).to_a.each do |index| %>
+                            <label class="btn btn-outline-primary" for="score"+<%=index.to_s%>>
+                                <%=index%>
+                                <%= form.radio_button :score, index, 
+                                                        id:"score"+index.to_s,
+                                                        class: "btn-check",
+                                                        checked: true%>
+                            </label>
+                        <% end %>
+                    </div>
+                </div>
+                
             </div>
+            <%# Send botton %>
             <div class='col-4 d-grid d-sm-flex justify-content-sm-center m-auto'>
-                <%= form.submit %>
+                <%= form.submit :Submit, class: "btn btn-outline-secondary btn-lg" %>
             </div>
+
         </div>
     </div>
 <% end %>
