@@ -19,10 +19,15 @@ class ArticlesController < ApplicationController
 
   # CREATE
   def new
-    @article = Article.new
+    if user_signed_in?
+      @article = Article.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
+    puts "Parameters with used: #{article_params}"
     @article = Article.new(article_params)
 
     if @article.save
@@ -35,6 +40,7 @@ class ArticlesController < ApplicationController
   # UPDATE
   def edit
     @article = Article.find(params[:id])
+    redirect_to @article unless user_signed_in? && current_user[:id] == @article.user_id
   end
 
   def update
@@ -51,15 +57,18 @@ class ArticlesController < ApplicationController
   def destroy
     puts "This are my parameters (DELETE): #{params}"
     @article = Article.find(params[:id])
-    @article.destroy
-
-    redirect_to root_path
+    if user_signed_in? && current_user[:id] == @article.user_id
+      @article.destroy
+      redirect_to root_path
+    else
+      redirect_to @article
+    end
   end
 
   private
 
   def article_params
-    puts "This are my parameters: #{params}"
-    params.require(:article).permit(:title, :body, :status)
+    form = params[:article].merge({ user_id: current_user[:id] })
+    form.permit(:title, :body, :status, :user_id)
   end
 end
