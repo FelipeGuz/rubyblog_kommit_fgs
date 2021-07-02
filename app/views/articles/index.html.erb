@@ -1,6 +1,5 @@
 
-<%= render "header", article: @article, title: 'Articles Blog'%>
-
+<%= render "shared/header", article: @article, title: 'Articles Blog'%>
 
 <div class="container">
     <!--Our blog has <%= Article.public_count %> articles and counting!-->
@@ -19,12 +18,13 @@
                 <div class="row list-group-item d-flex justify-content-between align-items-start">
                     <%# Button %>
                     <div class="col-9 p-5">
-                        <%= link_to article.title, article, style: "font-size: 18px"%>
+                        <%= link_to article.title, article, style: "font-size: 23px"%><br>
+                        By: <%= User.find(article[:user_id]).email%>
                     </div>
                     <%# Reading time %>
                     <div class="col-3 m-auto">
-                        <p class="text-center" style="font-size:17px">
-                            <%= (article.body.split.length/250.0).ceil %> minutes reading
+                        <p class="text-center" style="font-size:19px">
+                            <%= (article.body.split.length/250.0).ceil %> Minutes Reading
                         </p>
                         <%= render "comments_score", article: article%>
                     </div>

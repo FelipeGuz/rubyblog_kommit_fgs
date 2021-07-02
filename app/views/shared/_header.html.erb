@@ -1,0 +1,18 @@
+<header class="py-3 bg-dark text-white">
+    <div class="d-flex pl-5">
+        <a class="text-white text-decoration-none mr-auto" href="/">
+            <span style="font-size:40px"><%=title%></span>
+        </a>
+
+        <div class="justify-content-end mr-5 mt-2">
+            <% if user_signed_in? %>
+                <%= link_to 'Sign out', destroy_user_session_path, method: :delete, type: 'button',class: 'btn btn-primary'%>
+            <% elsif title == 'Sign Up' || title == 'Sign In'%>
+                <%= link_to 'Cancel', root_path, type: 'button',class: 'btn btn-primary'%>
+            <% else %>
+                <%= link_to 'Sign up', new_user_registration_path, type: 'button',class: 'btn btn-primary'%>
+                <%= link_to 'Sign in', new_user_session_path, type: 'button',class: 'btn btn-primary'%>
+            <% end %>
+        </div>
+    </div>
+</header>

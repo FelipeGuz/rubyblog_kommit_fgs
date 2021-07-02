@@ -1,14 +1,17 @@
 
-<%= render "header", article: @article, title: 'Articles Blog'%>
+<%= render "shared/header", article: @article, title: 'Articles Blog'%>
 
 <%# Title and score %>
 <header>
     <div class="p-5 pb-md-4 mx-auto text-center">
         <h1 class="display-2 fw-normal"><%= @article.title %></h1>
     </div>
-    <div class="container">
-        <div class="pb-md-4 text-right">
-            <h3>score: <%= (@article.comments.reduce(0) {|p,a| p+a.score}/@article.comments.size.to_f).round(2)%></h3>
+    <div class="container d-flex justify-content-between">
+        <div class="py-md-3 text-left" style="font-size:20px">
+            By: <%= User.find(@article[:user_id]).email%>
+        </div>
+        <div class="p-md-2 mb-3 text-right border border-warning rounded" style="font-size:25px; border-width: 3px;">
+            <%= (@article.comments.reduce(0) {|p,a| p+a.score}/@article.comments.size.to_f).round(2)%>
         </div>
     </div>
 </header>

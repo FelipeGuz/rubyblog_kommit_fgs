@@ -1,0 +1,32 @@
+<%= render "shared/header", article: @article, title: 'Sign In'%>
+
+<div class="container d-block p-5 mt-5 border">
+  <%# Form %>
+  <div class="d-flex justify-content-center p-5">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="mb-5">
+        <h2>Welcome back to Articles Blog!!</h2>
+      </div>
+
+      <div class="input-group input-group-lg mb-3">
+        <div class="input-group-prepend">
+          <%= f.label :email, class: "input-group-text", id: "basic-addon3"%><br/>
+        </div>
+        <%= f.email_field :email, class: "form-control", id: "basic-url"%>
+      </div>
+
+      <div class="input-group input-group-lg mb-3">
+        <div class="input-group-prepend">
+          <%= f.label :password, class: "input-group-text", id: "basic-addon3"%><br/>
+        </div>
+        <%= f.password_field :password, class: "form-control", id: "basic-url"%>
+      </div>
+
+      <div class='col-4 d-grid d-sm-flex justify-content-sm-center m-auto'>
+          <%= f.submit "Log in", class: "btn btn-outline-secondary btn-lg" %>
+      </div>
+    <% end %>
+  </div>
+</div>
