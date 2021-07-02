@@ -11,7 +11,7 @@
             By: <%= User.find(@article[:user_id]).email%>
         </div>
         <div class="p-md-2 mb-3 text-right border border-warning rounded" style="font-size:25px; border-width: 3px;">
-            <%= (@article.comments.reduce(0) {|p,a| p+a.score}/@article.comments.size.to_f).round(2)%>
+            <%= @article.score%>
         </div>
     </div>
 </header>
