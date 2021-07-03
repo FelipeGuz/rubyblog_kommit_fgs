@@ -2,7 +2,6 @@
 
 # Class to deal with the articles entity
 class ArticlesController < ApplicationController
-
   def index
     @articles = Article.all
   end
