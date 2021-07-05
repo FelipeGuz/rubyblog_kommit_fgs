@@ -18,20 +18,24 @@
         </div>
         <div class='col ml-4'>
             <h2>Followed by:</h2>
-            <% @user.followers.each do |followee|%>
+            <% @user.followers.each do |follower|%>
                 <div class="row list-group-item d-flex justify-content-between align-items-start">
                     <p style='font-size:20px'>
-                        user: <%=followee[:email]%>
+                        user: <%=follower[:email]%>
                     </p>
                 </div>
             <% end %>
 
             <h2 class='mt-4'>Following:</h2>
-            <% @user.followees.each do |follower|%>
+            <% @user.followees.each do |followee|%>
                 <div class="row list-group-item d-flex justify-content-between align-items-start">
                     <p style='font-size:20px'>
-                        user: <%=follower[:email]%>
+                        user: <%=followee[:email]%>
                     </p>
+                    <%= link_to 'Unfollow Me', follow_path(follower: @user,followee: followee),
+                                    method: :delete,
+                                    type: 'button',
+                                    class: "btn btn-primary btn-md ml-3 mb-3"%>
                 </div>
             <% end %>
         </div>
