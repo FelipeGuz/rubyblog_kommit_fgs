@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'articles#index'
 
   devise_for :users
+  resources :users, only: [:show]
   resources :follow
 
   # resources deal with all CRUD operations
