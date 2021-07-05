@@ -1,0 +1,31 @@
+
+<div class="container d-line border-bottom">
+    <div class="row pt-3">
+        <div class="col-6 text-center m-auto d-table">
+            <img src="/images/user.svg" style="max-width:40%; min-width:20px">
+            <p class='mt-3' style='font-size: 20px'>
+                <%= User.find(article[:user_id])[:email]%>
+            </p>
+        </div>
+
+        <div class="col-6 text-center m-auto d-table">
+            <p class='pb-4' style='font-size: 20px'>
+                I am a team player. I am outgoing, dedicated, and open-minded. 
+                I get across to people and adjust to changes with ease. I believe 
+                that a person should work on developing their professional skills 
+                and learning new things all the time.
+            </p>
+            <% if current_user &&  article[:user_id]!=current_user[:id] && !User.find(article[:user_id]).followers.include?(current_user)%>
+                <%= link_to 'Follow Me', follow_index_path({article: article}),
+                                    method: :create,
+                                    type: 'button',
+                                    class: "btn btn-primary btn-lg ml-3 mb-3"%>
+            <% else %>
+                <%= link_to 'Follow Me', follow_index_path({article: article}),
+                                    method: :create,
+                                    type: 'button',
+                                    class: "btn btn-primary btn-lg ml-3 mb-3 disabled"%>
+            <% end %>
+        </div>
+    </div>
+</div>

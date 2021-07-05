@@ -11,7 +11,7 @@
             By: <%= User.find(@article[:user_id]).email%>
         </div>
         <div class="p-md-2 mb-3 text-right border border-warning rounded" style="font-size:25px; border-width: 3px;">
-            <%= (@article.comments.reduce(0) {|p,a| p+a.score}/@article.comments.size.to_f).round(2)%>
+            <%= @article.score%>
         </div>
     </div>
 </header>
@@ -38,6 +38,15 @@
     </div>
 </div>
 
+<%# What do you think? message %>
+<div class="container px-4">
+    <div class="p-4 pb-md-4 mx-auto text-center">
+        <h2>About the Blogger</h2>
+    </div>
+</div>
+
+<%# Blogger profile %>
+<%= render 'profile', article: @article %>
 
 <%# What do you think? message %>
 <div class="container px-4">
