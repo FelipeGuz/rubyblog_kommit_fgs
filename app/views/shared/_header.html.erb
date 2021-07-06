@@ -17,10 +17,15 @@
                 <% when 'Edit Article' %>
                     <%= link_to 'Cancel', article, type: 'button',class: 'btn btn-primary'%>
                 <% else %>
-                    <%= link_to 'Sign out', destroy_user_session_path, 
-                        method: :delete, 
-                        type: 'button',
-                        class: 'btn btn-primary'%>
+                    <div class="d-flex">
+                        <p class='my-auto'>
+                            <%= link_to current_user[:email], User.find(current_user[:id]), class: 'text-white'%>
+                        </p>
+                        <%= link_to 'Sign out', destroy_user_session_path, 
+                            method: :delete, 
+                            type: 'button',
+                            class: 'btn btn-primary ml-4'%>
+                    </div>
                 <% end %>
             <% else %>
                 <% if title== 'Sign Up' || title == 'Sign In' %>
