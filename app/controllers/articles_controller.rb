@@ -8,7 +8,6 @@ class ArticlesController < ApplicationController
 
   # READ
   def show
-    puts "This are my parameters: #{params}"
     @article = Article.find(params[:id])
   end
 
@@ -22,7 +21,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    puts "Parameters with used: #{article_params}"
     @article = Article.new(article_params)
 
     if @article.save
@@ -50,7 +48,6 @@ class ArticlesController < ApplicationController
 
   # DELETE
   def destroy
-    puts "This are my parameters (DELETE): #{params}"
     @article = Article.find(params[:id])
     if user_signed_in? && current_user[:id] == @article.user_id
       @article.destroy
