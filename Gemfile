@@ -23,6 +23,14 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Adding Devise gem for authentication
 gem 'devise'
+# Adding testing gem
+group :development, :test do
+  gem 'rspec-rails', '>=3.9.0'
+end
+# Adding a XML gem
+gem 'rexml', '~> 3.2', '>= 3.2.4'
+# Adding controller helper for rspec
+gem 'rails-controller-testing'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
